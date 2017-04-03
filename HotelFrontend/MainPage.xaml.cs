@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelFrontend.Connection;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace HotelFrontend
         public MainPage()
         {
             this.InitializeComponent();
+
         }
     }
 }
