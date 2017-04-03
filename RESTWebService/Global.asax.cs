@@ -13,6 +13,16 @@ namespace RESTWebService
     {
         protected void Application_Start()
         {
+
+            // ReferenceLoopHandling sat til Ignore, da det ellers skabte følgende problem:
+            // "An exception has occurred while using the formatter 'JsonMediaTypeFormatter' to generate sample for media type 'text/json'. Exception message: Self referencing loop detected for property 'Room' with type 'RESTWebService.Room'. Path '[0].Booking[0]'."
+            HttpConfiguration config = GlobalConfiguration.Configuration;
+
+            config.Formatters.JsonFormatter
+                        .SerializerSettings
+                        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
