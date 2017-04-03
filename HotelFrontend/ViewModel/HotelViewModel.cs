@@ -35,10 +35,14 @@ namespace HotelFrontend.ViewModel
 
         public HotelViewModel()
         {
-            Facade facade = new Facade();
-            GuestList = facade.GetAllGuests().Result;
+            LoadFromDB();
         }
 
+        public async void LoadFromDB()
+        {
+            Facade facade = new Facade();
+            GuestList = await facade.GetAllGuests();
+        }
 
     }
 }

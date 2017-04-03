@@ -19,5 +19,10 @@ namespace HotelFrontend
         public string Address { get; set; }
 
         public virtual ICollection<Booking> Booking { get; set; }
+
+        public override string ToString()
+        {
+            return Name + " " + Address;
+        }
     }
 }
