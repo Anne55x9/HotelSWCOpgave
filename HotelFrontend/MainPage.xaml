@@ -14,6 +14,9 @@
                 <ViewModel:HotelViewModel/>
             </ListView.DataContext>
         </ListView>
+        <AppBarButton x:Name="appBarButton1" HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="784,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100"/>
+        <AppBarButton x:Name="appBarButton2" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="784,349,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+        <AppBarButton x:Name="appBarButton3" HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="784,120,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
 
     </Grid>
 </Page>
