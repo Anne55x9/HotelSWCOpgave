@@ -35,7 +35,7 @@ namespace HotelFrontend.ViewModel
 
         public HotelViewModel()
         {
-            LoadFromDB();
+           LoadFromDB();
         }
 
         public async void LoadFromDB()

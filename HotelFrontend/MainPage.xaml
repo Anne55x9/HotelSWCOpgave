@@ -9,14 +9,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="582" Margin="91,49,0,0" VerticalAlignment="Top" Width="421" Header="Gæsteliste" ItemsSource="{Binding GuestList}">
-            <ListView.DataContext>
-                <ViewModel:HotelViewModel/>
-            </ListView.DataContext>
-        </ListView>
-        <AppBarButton x:Name="appBarButton1" HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="784,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100"/>
-        <AppBarButton x:Name="appBarButton2" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="784,349,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
-        <AppBarButton x:Name="appBarButton3" HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="784,120,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+        <Viewbox Margin="91,49,396,89">
+            <Grid Height="582" Width="793">
+                <ListView x:Name="listView" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="421" Header="Gæsteliste" ItemsSource="{Binding GuestList}">
+                    <ListView.DataContext>
+                        <ViewModel:HotelViewModel/>
+                    </ListView.DataContext>
+                </ListView>
+                <AppBarButton x:Name="appBarButton1" HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="693,317,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100"/>
+                <AppBarButton x:Name="appBarButton2" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="693,446,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+                <AppBarButton x:Name="appBarButton3" HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="693,191,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+
+            </Grid>
+        </Viewbox>
 
     </Grid>
 </Page>
