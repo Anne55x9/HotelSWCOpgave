@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 namespace HotelFrontend.ViewModel
 {
@@ -41,8 +42,19 @@ namespace HotelFrontend.ViewModel
 
         public async void LoadFromDB()
         {
-            Facade facade = new Facade();
-            GuestList = await facade.GetAllGuests();
+            try
+            {
+                Facade facade = new Facade();
+                GuestList = await facade.GetAllGuests();
+            }
+            catch (System.Net.Http.HttpRequestException)
+            {
+                var msg = new MessageDialog("Kan ikke forbinde til webservice");
+                msg.Commands.Add(new UICommand("Prøv igen"));
+                await msg.ShowAsync();
+                LoadFromDB();
+            }
+            
         }
 
     }
