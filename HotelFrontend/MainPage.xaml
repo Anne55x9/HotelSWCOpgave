@@ -7,18 +7,23 @@
     xmlns:ViewModel="using:HotelFrontend.ViewModel"
     x:Class="HotelFrontend.MainPage"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <ViewModel:HotelViewModel/>
+    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox Margin="91,49,396,89">
             <Grid Height="582" Width="793">
-                <ListView x:Name="listView" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="421" Header="Gæsteliste" ItemsSource="{Binding GuestList}">
+                <ListView x:Name="listView" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="421" Header="Gæsteliste" ItemsSource="{Binding GuestList}" SelectedItem="{Binding SelectedGuest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ListView.DataContext>
                         <ViewModel:HotelViewModel/>
                     </ListView.DataContext>
                 </ListView>
-                <AppBarButton x:Name="appBarButton1" HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="693,317,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100"/>
-                <AppBarButton x:Name="appBarButton2" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="693,446,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
-                <AppBarButton x:Name="appBarButton3" HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="693,191,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+                <AppBarButton x:Name="appBarButton1" Click="{Binding UpdateGuestCommand}" HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="546,302,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100"/>
+                <AppBarButton x:Name="appBarButton2" Click="{Binding DeleteGuestCommand}" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="546,419,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+                <AppBarButton x:Name="appBarButton3" Click="{Binding CreateGuestCommand}"  HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="546,187,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+                <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="448,48,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Navn"/>
+                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="448,110,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Adresse"/>
 
             </Grid>
         </Viewbox>

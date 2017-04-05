@@ -15,8 +15,6 @@ namespace HotelFrontend.ViewModel
     public class HotelViewModel : INotifyPropertyChanged
     {
         private Guest selectedGuest;
-        private string name;
-        private string address;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,19 +29,39 @@ namespace HotelFrontend.ViewModel
         }
         public string Name
         {
-            get { return name; }
+            get
+            {
+                if (selectedGuest != null)
+                {
+                    return selectedGuest.Name;
+                }
+                else
+                {
+                    return "";
+                }
+            }
             set
             {
-                name = value;
+                selectedGuest.Name = value;
                 OnPropertyChanged(nameof(Name));
             }
         }
         public string Address
         {
-            get { return address; }
+            get
+            {
+                if (selectedGuest != null)
+                {
+                    return selectedGuest.Address;
+                }
+                else
+                {
+                    return "";
+                }
+            }
             set
             {
-                address = value;
+                selectedGuest.Address = value;
                 OnPropertyChanged(nameof(Address));
             }
         }
