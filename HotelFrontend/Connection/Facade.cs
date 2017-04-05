@@ -17,9 +17,9 @@ namespace HotelFrontend.Connection
         public async Task<ObservableCollection<Guest>> GetAllGuests()
         {
             handler = new HttpClientHandler();
-            //Creates a new HttpClientHandler.
             handler.UseDefaultCredentials = true;
             //true if the default credentials are used; otherwise false. will use authentication credentials from the logged on user on your pc.
+
             using (HttpClient client = new HttpClient(handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
@@ -31,7 +31,7 @@ namespace HotelFrontend.Connection
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
                 ObservableCollection<Guest> guestList = await response.Content.ReadAsAsync<ObservableCollection<Guest>>();
-                // var will give you a variable of type IEnumerable.
+                
                 return guestList;
             }
         }
