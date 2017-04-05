@@ -33,5 +33,20 @@ namespace HotelFrontend.Connection
                 return guestList;
             }
         }
+
+        public async void DeleteGuest(Guest guest)
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (HttpClient client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                var task = client.DeleteAsync("Guests/" + guest.Guest_No);
+                HttpResponseMessage response = await task;
+                response.EnsureSuccessStatusCode();
+            }
+
+        }
     }
 }
