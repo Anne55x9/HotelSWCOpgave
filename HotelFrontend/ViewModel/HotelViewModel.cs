@@ -1,4 +1,5 @@
-﻿using HotelFrontend.Connection;
+﻿using HotelFrontend.Common;
+using HotelFrontend.Connection;
 using HotelFrontend.Models;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,42 @@ namespace HotelFrontend.ViewModel
 {
     public class HotelViewModel : INotifyPropertyChanged
     {
-        
+        private Guest selectedGuest;
+        private string name;
+        private string address;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Guest SelectedGuest
+        {
+            get { return selectedGuest; }
+            set
+            {
+                selectedGuest = value;
+                OnPropertyChanged(nameof(SelectedGuest));
+            }
+        }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+        public string Address
+        {
+            get { return address; }
+            set
+            {
+                address = value;
+                OnPropertyChanged(nameof(Address));
+            }
+        }
+        public RelayCommand DeleteGuestCommand { get; set; }
+        public RelayCommand UpdateGuestCommand { get; set; }
+        public RelayCommand CreateGuestCommand { get; set; }
 
         protected virtual void OnPropertyChanged(string PropertyName)
         {
@@ -37,7 +71,11 @@ namespace HotelFrontend.ViewModel
 
         public HotelViewModel()
         {
-           LoadFromDB();
+            LoadFromDB();
+
+            DeleteGuestCommand = new RelayCommand(DeleteGuest);
+            UpdateGuestCommand = new RelayCommand(UpdateGuest);
+            CreateGuestCommand = new RelayCommand(CreateGuest);
         }
 
         public async void LoadFromDB()
@@ -54,8 +92,26 @@ namespace HotelFrontend.ViewModel
                 await msg.ShowAsync();
                 LoadFromDB();
             }
-            
         }
+
+        public void DeleteGuest()
+        {
+            Facade facade = new Facade();
+            facade.DeleteGuest(SelectedGuest);
+        }
+
+        public void UpdateGuest()
+        {
+            Facade facade = new Facade();
+            facade.UpdateGuest(SelectedGuest);
+        }
+
+        public void CreateGuest()
+        {
+            Facade facade = new Facade();
+            facade.CreateGuest(new Guest(Name, Address));
+        }
+
 
     }
 }

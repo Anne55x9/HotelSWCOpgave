@@ -12,6 +12,12 @@ namespace HotelFrontend
             Booking = new HashSet<Booking>();
         }
 
+        public Guest(string name, string address)
+        {
+            this.Name = name;
+            this.Address = address;
+        }
+
         public int Guest_No { get; set; }
 
         public string Name { get; set; }
