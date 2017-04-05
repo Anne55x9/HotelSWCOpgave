@@ -1,4 +1,5 @@
 ﻿using HotelFrontend.Connection;
+using HotelFrontend.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ namespace HotelFrontend.ViewModel
 {
     public class HotelViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Guest> guestList;
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -25,10 +26,10 @@ namespace HotelFrontend.ViewModel
 
         public ObservableCollection<Guest> GuestList
         {
-            get { return guestList; }
+            get { return Singleton.Instance.GuestList; }
             set
             {
-                guestList = value;
+                Singleton.Instance.GuestList = value;
                 OnPropertyChanged(nameof(GuestList));
             }
         }
