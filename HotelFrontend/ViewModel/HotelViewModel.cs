@@ -14,26 +14,28 @@ namespace HotelFrontend.ViewModel
 {
     public class HotelViewModel : INotifyPropertyChanged
     {
-        private Guest selectedGuest;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Guest SelectedGuest
         {
-            get { return selectedGuest; }
+            get { return Singleton.Instance.SelectedGuest; }
             set
             {
-                selectedGuest = value;
+                Singleton.Instance.SelectedGuest = value;
                 OnPropertyChanged(nameof(SelectedGuest));
+                OnPropertyChanged("Name");
+                OnPropertyChanged("Address");
             }
         }
         public string Name
         {
             get
             {
-                if (selectedGuest != null)
+                if (SelectedGuest != null)
                 {
-                    return selectedGuest.Name;
+                    return SelectedGuest.Name;
                 }
                 else
                 {
@@ -42,17 +44,20 @@ namespace HotelFrontend.ViewModel
             }
             set
             {
-                selectedGuest.Name = value;
-                OnPropertyChanged(nameof(Name));
+                if (SelectedGuest != null)
+                {
+                    SelectedGuest.Name = value;
+                    
+                }
             }
         }
         public string Address
         {
             get
             {
-                if (selectedGuest != null)
+                if (SelectedGuest != null)
                 {
-                    return selectedGuest.Address;
+                    return SelectedGuest.Address;
                 }
                 else
                 {
@@ -61,8 +66,11 @@ namespace HotelFrontend.ViewModel
             }
             set
             {
-                selectedGuest.Address = value;
-                OnPropertyChanged(nameof(Address));
+                if (SelectedGuest != null)
+                {
+                    SelectedGuest.Address = value;
+                   
+                }
             }
         }
         public RelayCommand DeleteGuestCommand { get; set; }
@@ -71,9 +79,9 @@ namespace HotelFrontend.ViewModel
 
         protected virtual void OnPropertyChanged(string PropertyName)
         {
-            if (PropertyName != null)
+            if (PropertyName != null )
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
             }
         }
 

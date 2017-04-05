@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:HotelFrontend.ViewModel"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="HotelFrontend.MainPage"
     mc:Ignorable="d">
     <Page.DataContext>
@@ -14,16 +15,34 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox Margin="91,49,396,89">
             <Grid Height="582" Width="793">
-                <ListView x:Name="listView" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="421" Header="Gæsteliste" ItemsSource="{Binding GuestList}" SelectedItem="{Binding SelectedGuest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListView x:Name="listView" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="421" Header="Gæsteliste" ItemsSource="{Binding GuestList}" SelectedItem="{Binding SelectedGuest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="SelectionChanged">
                     <ListView.DataContext>
                         <ViewModel:HotelViewModel/>
                     </ListView.DataContext>
                 </ListView>
-                <AppBarButton x:Name="appBarButton1" Click="{Binding UpdateGuestCommand}" HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="546,302,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100"/>
-                <AppBarButton x:Name="appBarButton2" Click="{Binding DeleteGuestCommand}" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="546,419,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
-                <AppBarButton x:Name="appBarButton3" Click="{Binding CreateGuestCommand}"  HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="546,187,0,0" VerticalAlignment="Top" Height="100" Width="100"/>
+                <AppBarButton x:Name="appBarButton1"  HorizontalAlignment="Left" Icon="Edit" Label="Rediger Gæst" Margin="546,302,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,0.645" Height="100" Width="100">
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:EventTriggerBehavior EventName="Click">
+                            <Core:InvokeCommandAction Command="{Binding UpdateGuestCommand}"/>
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </AppBarButton>
+                <AppBarButton x:Name="appBarButton2" HorizontalAlignment="Left" Icon="Delete" Label="Slet Gæst" Margin="546,419,0,0" VerticalAlignment="Top" Height="100" Width="100">
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:EventTriggerBehavior EventName="Click">
+                            <Core:InvokeCommandAction Command="{Binding DeleteGuestCommand}"/>
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </AppBarButton>
+                <AppBarButton x:Name="appBarButton3" HorizontalAlignment="Left" Icon="AddFriend" Label="Opret Gæst" Margin="546,187,0,0" VerticalAlignment="Top" Height="100" Width="100">
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:EventTriggerBehavior EventName="Click">
+                            <Core:InvokeCommandAction Command="{Binding CreateGuestCommand}"/>
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </AppBarButton>
                 <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="448,48,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Navn"/>
-                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="448,110,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Adresse"/>
+                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="448,106,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Adresse"/>
 
             </Grid>
         </Viewbox>

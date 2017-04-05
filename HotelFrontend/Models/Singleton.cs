@@ -5,14 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using HotelFrontend.ViewModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
-namespace HotelFrontend.Models
+namespace HotelFrontend.Models 
 {
-    public class Singleton
+    public class Singleton : INotifyPropertyChanged
     {
+        public Guest SelectedGuest
+        {
+            get { return selectedGuest; }
+            set
+            {
+                selectedGuest = value;
+                OnPropertyChanged(nameof(SelectedGuest));
+
+            }
+        }
         public ObservableCollection<Guest> GuestList { get; set; }
 
         private static Singleton instance;
+        private Guest selectedGuest;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private Singleton()
         {
@@ -30,7 +44,14 @@ namespace HotelFrontend.Models
                 return instance;
             }
         }
-
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (propertyName != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+            
+        }
 
     }
 }

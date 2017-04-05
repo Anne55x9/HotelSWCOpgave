@@ -45,8 +45,9 @@ namespace HotelFrontend.Connection
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
+                string deleteUrl = "guests/" + guest.Guest_No;
 
-                var task = client.DeleteAsync("Guests/" + guest.Guest_No);
+                var task = client.DeleteAsync(deleteUrl);
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
             }

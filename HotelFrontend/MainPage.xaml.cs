@@ -1,4 +1,5 @@
 ﻿using HotelFrontend.Connection;
+using HotelFrontend.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,6 +28,14 @@ namespace HotelFrontend
         {
             this.InitializeComponent();
 
+        }
+
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Not proper MVVM but the binding just wouldn't update correctly
+            var vm = (HotelViewModel)this.DataContext;
+            textBox.Text = vm.Name;
+            textBox1.Text = vm.Address;
         }
     }
 }
