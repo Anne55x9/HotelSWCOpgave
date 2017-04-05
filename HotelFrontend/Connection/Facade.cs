@@ -23,8 +23,10 @@ namespace HotelFrontend.Connection
             using (HttpClient client = new HttpClient(handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+
                 var task = client.GetAsync("Guests");
-                // var means the compiler will determine the explicit type of the variable, based on usage. this would give you a variable of type Client.
+                
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
                 // check for response code (if response is not 200 throw exception)
@@ -42,11 +44,31 @@ namespace HotelFrontend.Connection
             using (HttpClient client = new HttpClient(handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+
                 var task = client.DeleteAsync("Guests/" + guest.Guest_No);
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
             }
 
         }
+
+        public async void UpdateGuest(Guest guest)
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                var task = client.PostAsJsonAsync("Guest", guest);
+                HttpResponseMessage response = await task;
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+
     }
 }
