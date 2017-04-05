@@ -63,7 +63,23 @@ namespace HotelFrontend.Connection
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
 
-                var task = client.PostAsJsonAsync("Guest", guest);
+                var task = client.PutAsJsonAsync("Guests/" + guest.Guest_No, guest);
+                HttpResponseMessage response = await task;
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+        public async void CreateGuest(Guest guest)
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                var task = client.PostAsJsonAsync("Guests", guest);
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
             }
