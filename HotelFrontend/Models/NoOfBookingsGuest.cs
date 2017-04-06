@@ -13,5 +13,10 @@ namespace HotelFrontend
         public string Name { get; set; }
 
         public int? BookingCount { get; set; }
+
+        public override string ToString()
+        {
+            return "Gæste Nr: " + Guest_No + " Navn: " + Name + " Bookings: " + BookingCount;
+        }
     }
 }

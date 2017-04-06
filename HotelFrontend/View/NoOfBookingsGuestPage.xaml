@@ -1,0 +1,31 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HotelFrontend.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:HotelFrontend.ViewModel"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="HotelFrontend.View.NoOfBookingsGuestPage"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.DataContext>
+            <ViewModel:NoOfBookingsGuestViewModel/>
+        </Grid.DataContext>
+        <Viewbox Margin="154,128,356,127">
+            <Grid Height="465" Width="770">
+                <ListView x:Name="listView" HorizontalAlignment="Left" Height="465" VerticalAlignment="Top" Width="334" Header="Antal Bookings pr. Gæst" ItemsSource="{Binding NoOfBookings}"/>
+                <AppBarButton x:Name="appBarButton" HorizontalAlignment="Left" Icon="Back" Label="Tilbage" Margin="516,191,0,0" VerticalAlignment="Top">
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:EventTriggerBehavior EventName="Click">
+                            <Core:NavigateToPageAction TargetPage="HotelFrontend.MainPage"/>
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </AppBarButton>
+
+            </Grid>
+        </Viewbox>
+
+    </Grid>
+</Page>

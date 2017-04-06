@@ -14,8 +14,6 @@ namespace HotelFrontend.ViewModel
 {
     public class HotelViewModel : INotifyPropertyChanged
     {
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Guest SelectedGuest

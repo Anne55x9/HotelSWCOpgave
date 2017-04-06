@@ -43,6 +43,13 @@
                 </AppBarButton>
                 <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="448,48,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Navn"/>
                 <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="448,106,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="287" PlaceholderText="Adresse"/>
+                <AppBarButton x:Name="appBarButton" HorizontalAlignment="Left" Icon="Forward" Label="Antal Bookinger pr. Gæst" Margin="696,467,0,0" VerticalAlignment="Top">
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:EventTriggerBehavior EventName="Click">
+                            <Core:NavigateToPageAction TargetPage="HotelFrontend.View.NoOfBookingsGuestPage"/>
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </AppBarButton>
 
             </Grid>
         </Viewbox>

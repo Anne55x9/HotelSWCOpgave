@@ -24,6 +24,7 @@ namespace HotelFrontend.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public ObservableCollection<Guest> GuestList { get; set; }
+        public ObservableCollection<NoOfBookingsGuest> NoOfBookings { get; set; }
 
         private static Singleton instance;
         private Guest selectedGuest;
@@ -33,6 +34,7 @@ namespace HotelFrontend.Models
         private Singleton()
         {
             GuestList = new ObservableCollection<Guest>();
+            NoOfBookings = new ObservableCollection<NoOfBookingsGuest>();
         }
 
         public static Singleton Instance

@@ -91,5 +91,25 @@ namespace HotelFrontend.Connection
         }
 
 
+
+        public async Task<ObservableCollection<NoOfBookingsGuest>> GetNoOfBookings()
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (HttpClient client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                var task = client.GetAsync("NoOfBookingsGuests");
+
+                HttpResponseMessage response = await task;
+                response.EnsureSuccessStatusCode();
+                ObservableCollection<NoOfBookingsGuest> noOfBookings = await response.Content.ReadAsAsync<ObservableCollection<NoOfBookingsGuest>>();
+
+                return noOfBookings;
+            }
+        }
     }
 }
