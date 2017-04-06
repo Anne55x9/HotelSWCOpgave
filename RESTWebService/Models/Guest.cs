@@ -16,7 +16,6 @@ namespace RESTWebService
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Guest_No { get; set; }
 
         [Required]

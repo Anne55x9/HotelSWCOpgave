@@ -8,7 +8,7 @@ namespace RESTWebService
     public partial class HotelContext : DbContext
     {
         public HotelContext()
-            : base("name=HotelContext")
+            : base("name=HotelContext1")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
