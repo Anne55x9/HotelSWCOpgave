@@ -8,15 +8,15 @@ namespace RESTWebService
     public partial class HotelContext : DbContext
     {
         public HotelContext()
-            : base("name=HotelContext1")
+            : base("name=HotelContext")
         {
-            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Guest> Guest { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<Room> Room { get; set; }
+        public virtual DbSet<NoOfBookingsGuest> NoOfBookingsGuest { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -56,6 +56,10 @@ namespace RESTWebService
                 .WithRequired(e => e.Room)
                 .HasForeignKey(e => new { e.Room_No, e.Hotel_No })
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<NoOfBookingsGuest>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
         }
     }
 }

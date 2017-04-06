@@ -81,22 +81,7 @@ namespace RESTWebService.Controllers
             }
 
             db.Guest.Add(guest);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (GuestExists(guest.Guest_No))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = guest.Guest_No }, guest);
         }

@@ -103,6 +103,7 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\NoOfBookingsGuest.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

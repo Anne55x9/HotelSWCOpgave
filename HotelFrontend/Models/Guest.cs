@@ -2,12 +2,17 @@ namespace HotelFrontend
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Guest : INotifyPropertyChanged
+    public class Guest
     {
+        public int Guest_No { get; set; }
+
+        public string Name { get; set; }
+
+        public string Address { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
         public Guest()
         {
             Booking = new HashSet<Booking>();
@@ -18,16 +23,6 @@ namespace HotelFrontend
             this.Name = name;
             this.Address = address;
         }
-
-        public int Guest_No { get; set; }
-
-        public string Name { get; set; }
-
-        public string Address { get; set; }
-
-        public virtual ICollection<Booking> Booking { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
