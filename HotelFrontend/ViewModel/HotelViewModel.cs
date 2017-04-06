@@ -24,62 +24,26 @@ namespace HotelFrontend.ViewModel
             set
             {
                 Singleton.Instance.SelectedGuest = value;
+                Name = SelectedGuest.Name;
+                Address = SelectedGuest.Address;
+
                 OnPropertyChanged(nameof(SelectedGuest));
-                OnPropertyChanged("Name");
-                OnPropertyChanged("Address");
             }
         }
-        public string Name
-        {
-            get
-            {
-                if (SelectedGuest != null)
-                {
-                    return SelectedGuest.Name;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            set
-            {
-                if (SelectedGuest != null)
-                {
-                    SelectedGuest.Name = value;
-                    
-                }
-            }
-        }
+        public string Name { get { return Singleton.Instance.Name; } set { Singleton.Instance.Name = value; } }
         public string Address
         {
-            get
-            {
-                if (SelectedGuest != null)
-                {
-                    return SelectedGuest.Address;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            set
-            {
-                if (SelectedGuest != null)
-                {
-                    SelectedGuest.Address = value;
-                   
-                }
-            }
+            get { return Singleton.Instance.Address; }
+            set { Singleton.Instance.Address = value; }
         }
+
         public RelayCommand DeleteGuestCommand { get; set; }
         public RelayCommand UpdateGuestCommand { get; set; }
         public RelayCommand CreateGuestCommand { get; set; }
 
         protected virtual void OnPropertyChanged(string PropertyName)
         {
-            if (PropertyName != null )
+            if (PropertyName != null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
             }
@@ -124,18 +88,21 @@ namespace HotelFrontend.ViewModel
         {
             Facade facade = new Facade();
             facade.DeleteGuest(SelectedGuest);
+
         }
 
         public void UpdateGuest()
         {
             Facade facade = new Facade();
             facade.UpdateGuest(SelectedGuest);
+
         }
 
         public void CreateGuest()
         {
             Facade facade = new Facade();
             facade.CreateGuest(new Guest(Name, Address));
+
         }
 
 

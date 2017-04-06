@@ -21,6 +21,8 @@ namespace HotelFrontend.Models
 
             }
         }
+        public string Name { get; set; }
+        public string Address { get; set; }
         public ObservableCollection<Guest> GuestList { get; set; }
 
         private static Singleton instance;

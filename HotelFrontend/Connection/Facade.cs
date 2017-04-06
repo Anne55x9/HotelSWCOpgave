@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelFrontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -52,6 +53,7 @@ namespace HotelFrontend.Connection
                 response.EnsureSuccessStatusCode();
             }
 
+            Singleton.Instance.GuestList = await GetAllGuests();
         }
 
         public async void UpdateGuest(Guest guest)
@@ -68,6 +70,7 @@ namespace HotelFrontend.Connection
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
             }
+            Singleton.Instance.GuestList = await GetAllGuests();
         }
 
         public async void CreateGuest(Guest guest)
@@ -84,6 +87,7 @@ namespace HotelFrontend.Connection
                 HttpResponseMessage response = await task;
                 response.EnsureSuccessStatusCode();
             }
+            Singleton.Instance.GuestList = await GetAllGuests();
         }
 
 
