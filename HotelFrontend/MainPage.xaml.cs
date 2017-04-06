@@ -37,18 +37,22 @@ namespace HotelFrontend
             // Not proper MVVM but the binding just wouldn't update correctly
             var vm = (HotelViewModel)this.DataContext;
 
-            if (vm.SelectedGuest != null)
+            if (textBox != null && textBox1 != null)
             {
-                textBox.Text = vm.Name;
-                textBox1.Text = vm.Address;
+                if (vm.SelectedGuest != null)
+                {
+                    textBox.Text = vm.Name;
+                    textBox1.Text = vm.Address;
 
+                }
+                else
+                {
+                    textBox.Text = "";
+                    textBox1.Text = "";
+                }
             }
-            else
-            {
-                textBox.Text = "";
-                textBox1.Text = "";
-            }
-            
+
+
 
         }
 

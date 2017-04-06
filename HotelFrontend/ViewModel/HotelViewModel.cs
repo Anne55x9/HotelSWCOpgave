@@ -92,6 +92,8 @@ namespace HotelFrontend.ViewModel
         public void UpdateGuest()
         {
             Facade facade = new Facade();
+            SelectedGuest.Name = Name;
+            SelectedGuest.Address = Address;
             facade.UpdateGuest(SelectedGuest);
 
         }
