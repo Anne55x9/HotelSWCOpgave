@@ -22,8 +22,8 @@ namespace HotelFrontend.ViewModel
             set
             {
                 Singleton.Instance.SelectedGuest = value;
-                Name = SelectedGuest.Name;
-                Address = SelectedGuest.Address;
+                Name = SelectedGuest?.Name;
+                Address = SelectedGuest?.Address;
 
                 OnPropertyChanged(nameof(SelectedGuest));
             }
