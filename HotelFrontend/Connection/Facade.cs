@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HotelFrontend.Connection
 {
-    class Facade
+   public class Facade
     {
         private HttpClientHandler handler;
         public const string ServerUrl = "http://localhost:30351/api/";
